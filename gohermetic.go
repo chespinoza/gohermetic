@@ -1,5 +1,7 @@
 //
 // Example:
+// Key must to have 16 or 32 chars
+//
 //func main() {
 //	key := []byte("example key 1234")
 //	plaintext := []byte("example text to encrypt")
@@ -29,7 +31,6 @@ type Hermetic struct {
 
 func NewHermetic(key []byte) *Hermetic {
 	l := len(key)
-	fmt.Println(l)
 	switch l {
 	case 16, 32:
 		h := new(Hermetic)
