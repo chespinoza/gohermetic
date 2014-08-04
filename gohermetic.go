@@ -28,6 +28,9 @@ type Hermetic struct {
 }
 
 func NewHermetic(key []byte) *Hermetic {
+	if len(key) != 16 || len(key) != 32 || len(key) != 64 {
+		panic("Key must to have 16,32 or 64 chars")
+	}
 	h := new(Hermetic)
 	h.key = key
 	return h
