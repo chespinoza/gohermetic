@@ -1,12 +1,19 @@
 //
 // Example:
-// Key must to have 16 or 32 chars
+// "Key" must to have 16 or 32 chars
+//
+//package main
+//
+//import (
+//		"github.com/chespinoza/gohermetic"
+//		"fmt"
+//)
 //
 //func main() {
-//	key := []byte("example key 1234")
+//	key := []byte("example key 1234") // 16 chars
 //	plaintext := []byte("example text to encrypt")
 //
-//	h := NewHermetic(key)
+//	h := gohermetic.NewHermetic(key)
 //	ciphertext := h.Encode(plaintext)
 //	text, _ := h.Decode(ciphertext)
 //	fmt.Printf("%s\n", ciphertext)
@@ -21,7 +28,6 @@ import (
 	"crypto/cipher"
 	"crypto/rand"
 	"encoding/base64"
-	//"fmt"
 	"io"
 )
 
@@ -75,7 +81,6 @@ func (h *Hermetic) Encode(plaintext []byte) []byte {
 	if _, err := io.ReadFull(rand.Reader, iv); err != nil {
 		panic(err)
 	}
-
 	mode := cipher.NewCFBEncrypter(block, iv)
 	mode.XORKeyStream(ciphertext[aes.BlockSize:], b64)
 	return ciphertext
